@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # simple_mock
 # sql文件为mysql中表结构文件
 # mock_server.py为实际mock文件。
@@ -11,3 +12,6 @@
 # 4、运行mock_web.py。
 # 5、把web项目拷贝到web容器中正常访问，修改mock/js/config.js接口访问地址为mock_web的地址和端口。
 # 6、打开index页，添加/导入自己需要的mock数据。
+=======
+# api_mock
+>>>>>>> 3cb46eabd54a54c72ed754570afe293e8f41cd68
