@@ -10,21 +10,32 @@
 	<body>
 		<div class="wrap">
 			<div class="header clearfix">
-				<h1 class="page-title">SIMPLE MOCK</h1>
-				<div class="ctrl clearfix">
-					<div class="file-up">
-						<p class="file-tip">批量导入EXCEL数据:</p>
-						<input id="fileupload" type="file" name="files[]" data-url="" multiple>					
-					</div>
-					<a href="javascript:void(0)" class="del-btn" onclick="del();">- 删除</a>
-					<a href="javascript:void(0)" class="add-btn" id="add-btn">+ 新增</a>
+				<div class="clearfix">
 					<div class="search-box">
-						<input type="text" placeholder="请输入搜索名称" />
-						<a href="javascript:void(0)" class="search-btn" onclick="getAllData();">搜索</a>
+						<input type="text" placeholder="请输入需要搜索的api名称" />
+						<a href="javascript:void(0)" class="search-btn" onclick="getAllData();">🔍搜索</a>
 					</div>
+					<h1 class="page-title">DSQ Mock System</h1>
+				</div>
+				<div class="ctrl clearfix">
+					<!--<div class="file-up">
+						<p class="file-tip">批量导入Excel Mock数据:</p>
+						<input id="fileupload" type="file" name="files[]" data-url="" multiple>					
+					</div>-->
+					<div class="right">
+						<a href="javascript:void(0)" class="btn add-btn" id="add-btn">+ 新增</a>
+						<a href="javascript:void(0)" class="btn upload-btn" onclick="upload();">- 导入</a>
+						<a href="javascript:void(0)" class="btn del-btn" onclick="del();">- 删除</a>
+					</div>
+					
 					<select name="" class="myselect product-name">
 						<option value="0" hidden>请选择项目名称</option>
 						<option value="0">全部</option>
+                        <option value="0">带上钱</option>
+                        <option value="0">风控</option>
+                        <option value="0">Biz</option>
+                        <option value="0">Rbiz</option>
+                        <option value="0">Paysvr</option>
 					</select>
 				</div>
 			</div>
