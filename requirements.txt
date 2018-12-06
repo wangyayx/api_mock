@@ -1,3 +1,5 @@
+pymysql
+pymysql
 Flask_Cors==3.0.6
 xlrd==1.0.0
 requests==2.18.1

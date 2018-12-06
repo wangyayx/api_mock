@@ -17,10 +17,12 @@ def getconfig():
     path = 'db.config'
     cf.read(path)
     _dburi = cf.get("database","dbhost")
+    print(_dburi)
     return _dburi
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = getconfig()
+# app.config['SQLALCHEMY_DATABASE_URI'] = getconfig()
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:123456@127.0.0.1:3306/mock_api'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=True
 db = SQLAlchemy(app)
 
@@ -152,7 +154,7 @@ def not_found(error):
 
 @app.errorhandler(500)
 def not_found(error):
-    return make_response(u"程序报错，可能是因为叙利亚战争导致", 500)
+    return make_response(u"程序报错，可能是因为颜值不够", 500)
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0',debug=True, port=5201,threaded=True)
+    app.run(host='0.0.0.0',debug=False, port=5201,threaded=True)

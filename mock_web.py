@@ -3,16 +3,21 @@ from  flask import Flask,request,jsonify,make_response
 from flask_cors import *
 from flask_restful import reqparse
 from datetime import datetime
-import sys,xlrd,mock_server
+import sys, xlrd
+import mock_server
 from flask_sqlalchemy import SQLAlchemy
+
+import pymysql
+pymysql.install_as_MySQLdb()
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
-save_path='D:\\'
+save_path='/Users/liying/Documents/simple_mock/'
 ALLOWED_EXTENSIONS = ['xls', 'xlsx']
 app=Flask(__name__)
 CORS(app, supports_credentials=True)
-app.config['SQLALCHEMY_DATABASE_URI'] = mock_server.getconfig()
+# app.config['SQLALCHEMY_DATABASE_URI'] = mock_server.getconfig()
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:123456@127.0.0.1:3306/mock_api'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=True
 #app.config['SQLALCHEMY_ECHO']=True
 db = SQLAlchemy(app)
@@ -74,17 +79,17 @@ def import_device():
 def query_user():
     parser = reqparse.RequestParser()
     parser.add_argument('title', type=str,required=True)
-    parser.add_argument('method', type=str,required=True)
-    parser.add_argument('reqparams', type=str, required=True)
+    # parser.add_argument('method', type=str,required=True)
+    # parser.add_argument('reqparams', type=str, required=True)
     parser.add_argument('resparams', type=str, required=True)
     parser.add_argument('des', type=str)
     parser.add_argument('domain', type=str,required=True)
     parser.add_argument('projectName', type=str,required=True)
-    parser.add_argument('ischeck', type=int, required=True)
+    # parser.add_argument('ischeck', type=int, required=True)
     args = parser.parse_args()
     try:
-        mock=mock_config(id=None,title=args.get('title'),reqparams=args.get('reqparams'),methods=args.get('method'),domain=args.get('domain'),
-                     description=args.get('des'),resparams=args.get('resparams'),update_time=None,status=0,ischeck=args.get('ischeck'),project_name=args.get('projectName'))
+        mock=mock_config(id=None,title=args.get('title'),domain=args.get('domain'),
+                     description=args.get('des'),resparams=args.get('resparams'),update_time=None,status=0,project_name=args.get('projectName'))
         db.session.add(mock)
         db.session.commit()
     except :
@@ -202,7 +207,8 @@ def not_found(error):
 
 @app.errorhandler(500)
 def not_found(error):
-    return make_response("程序报错，可能是因为叙利亚战争导致", 500)
+    return make_response("程序报错，可能是因为颜值不够", 500)
 
 if __name__=="__main__":
     app.run(host='0.0.0.0',debug=True,threaded=True,port=5202)
+    # app.run(host='127.0.0.1',debug=True,threaded=True,port=5202)
